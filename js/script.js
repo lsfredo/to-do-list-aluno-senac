@@ -20,29 +20,30 @@ function cadastrarTarefa() {
         return;
     }
 
-   if (tarefaEmEdicao === null) {
-    const novaTarefa = {
-        id: Date.now(),
-        descricao: descricao,
-        disciplina: disciplina,
-        data: data,
-        concluida: false
-    };
+    if (tarefaEmEdicao === null) {
+        const novaTarefa = {
+            id: Date.now(),
+            descricao: descricao,
+            disciplina: disciplina,
+            data: data,
+            concluida: false
+        };
 
-    tarefas.push(novaTarefa);
-} else {
-    const tarefa = tarefas.find(function (item) {
-        return item.id === tarefaEmEdicao;
-    });
+        tarefas.push(novaTarefa);
+    } else {
+        const tarefa = tarefas.find(function (item) {
+            return item.id === tarefaEmEdicao;
+        });
 
-    if (tarefa) {
-        tarefa.descricao = descricao;
-        tarefa.disciplina = disciplina;
-        tarefa.data = data;
+        if (tarefa) {
+            tarefa.descricao = descricao;
+            tarefa.disciplina = disciplina;
+            tarefa.data = data;
+        }
+
+        tarefaEmEdicao = null;
     }
 
-    tarefaEmEdicao = null;
-}
     salvarTarefas();
     exibirTarefas();
     limparFormulario();
