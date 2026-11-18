@@ -3,10 +3,10 @@
 ## Ambiente utilizado
 
 - Aplicação publicada no GitHub Pages
-- Navegador utilizado: informar o navegador
+- Navegador utilizado: Microsoft Edge
 - Armazenamento: LocalStorage
-- Data do teste: informar a data
-
+- Data do teste: 18/11/2026
+  
 ## Testes realizados
 
 | ID | Funcionalidade | Procedimento | Resultado esperado | Resultado obtido | Status |
