@@ -1,6 +1,9 @@
 // Recupera as tarefas salvas ou inicia uma lista vazia
 let tarefas = JSON.parse(localStorage.getItem("tarefas")) || [];
 
+// Guarda o identificador da tarefa que está sendo editada
+let tarefaEmEdicao = null;
+
 // Salva a lista de tarefas no LocalStorage
 function salvarTarefas() {
     localStorage.setItem("tarefas", JSON.stringify(tarefas));
@@ -17,6 +20,7 @@ function cadastrarTarefa() {
         return;
     }
 
+   if (tarefaEmEdicao === null) {
     const novaTarefa = {
         id: Date.now(),
         descricao: descricao,
@@ -26,6 +30,19 @@ function cadastrarTarefa() {
     };
 
     tarefas.push(novaTarefa);
+} else {
+    const tarefa = tarefas.find(function (item) {
+        return item.id === tarefaEmEdicao;
+    });
+
+    if (tarefa) {
+        tarefa.descricao = descricao;
+        tarefa.disciplina = disciplina;
+        tarefa.data = data;
+    }
+
+    tarefaEmEdicao = null;
+}
     salvarTarefas();
     exibirTarefas();
     limparFormulario();
@@ -59,7 +76,16 @@ function exibirTarefas() {
                 <span>${escaparHTML(tarefa.disciplina)}</span>
                 <span>Conclusão: ${dataFormatada}</span>
             </div>
-
+            
+            <button
+               type="button"
+               class="botao-editar"
+               onclick="editarTarefa(${tarefa.id})"
+               aria-label="Editar tarefa"
+            >
+                Editar
+            </button>
+            
             <button
                 type="button"
                 class="botao-excluir"
@@ -72,6 +98,24 @@ function exibirTarefas() {
 
         listaTarefas.appendChild(item);
     });
+}
+// Carrega uma tarefa no formulário para edição
+function editarTarefa(id) {
+    const tarefa = tarefas.find(function (item) {
+        return item.id === id;
+    });
+
+    if (!tarefa) {
+        return;
+    }
+
+    document.getElementById("tarefa-descricao").value = tarefa.descricao;
+    document.getElementById("tarefa-disciplina").value = tarefa.disciplina;
+    document.getElementById("tarefa-data").value = tarefa.data;
+
+    tarefaEmEdicao = id;
+
+    document.getElementById("tarefa-descricao").focus();
 }
 
 // Altera o estado da tarefa entre pendente e concluída
