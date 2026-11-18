@@ -8,6 +8,199 @@
 </head>
 <body>
 
+    <main class="container">
+
+        <!-- CABEÇALHO -->
+        <header class="header">
+
+            <div class="logo">
+                <img src="img/logo.webp" alt="Logo do Senac">
+            </div>
+
+            <div class="header-conteudo">
+                <h1>TO-DO List do Aluno Senac</h1>
+
+                <p>
+                    Organize suas tarefas e acompanhe cada etapa da sua jornada acadêmica.
+                </p>
+            </div>
+
+        </header>
+
+
+        <!-- MARCOS ACADÊMICOS -->
+        <section class="marcos-academicos">
+
+            <h2>Marcos acadêmicos</h2>
+
+            <div class="marcos">
+
+                <article class="marcos-card" data-date="2026-06-27">
+                    <div class="marcos-title">
+                        PTI
+                    </div>
+
+                    <div class="marcos-data">
+                        <span>09/11</span>
+                        <button class="edit-button" aria-label="Editar data">
+                            ✏️
+                        </button>
+                    </div>
+                </article>
+
+
+                <article class="marcos-card" data-date="2026-06-27">
+                    <div class="marcos-title">
+                        Quiz
+                    </div>
+
+                    <div class="marcos-data">
+                        <span>08/12</span>
+                        <button class="edit-button" aria-label="Editar data">
+                            ✏️
+                        </button>
+                    </div>
+                </article>
+
+
+                <article class="marcos-card" data-date="2026-06-27">
+                    <div class="marcos-title">
+                        Projeto Integrador
+                    </div>
+
+                    <div class="marcos-data">
+                        <span>23/09</span>
+                        <button class="edit-button" aria-label="Editar data">
+                            ✏️
+                        </button>
+                    </div>
+                </article>
+
+
+                <article class="marcos-card" data-date="2026-06-27">
+                    <div class="marcos-title">
+                        Prova Presencial
+                    </div>
+
+                    <div class="marcos-data">
+                        <span>05/12</span>
+                        <button class="edit-button" aria-label="Editar data">
+                            ✏️
+                        </button>
+                    </div>
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- DIVISOR -->
+        <div class="divisor"></div>
+
+
+        <!-- MINHAS TAREFAS -->
+        <section class="minhas-tarefas">
+
+            <h2>Minhas tarefas</h2>
+
+            <!-- FORMULÁRIO DE CADASTRO -->
+            <form class="tarefa-form">
+
+                <div class="grupo-form">
+                    <label>
+                        Descrição
+                    </label>
+                    
+                    <!-- id="tarefa-descricao" é usado para referenciar o campo de descrição no JavaScript. -->
+                    <input
+                        type="text"
+                        id="tarefa-descricao"
+                        placeholder="Escreva descrição da tarefa..."
+                        required
+                    >
+                </div>
+
+
+                <div class="grupo-form">
+                    <label>
+                        Disciplina
+                    </label>
+
+                    <!-- id="tarefa-disciplina" é usado para referenciar o campo de disciplina no JavaScript. -->
+                    <input
+                        type="text"
+                        id="tarefa-disciplina"
+                        placeholder="Nome da disciplina..."
+                        required
+                    >
+                </div>
+
+
+                <div class="grupo-form">
+                    <label>
+                        Data de conclusão
+                    </label>
+
+                    <!-- id="tarefa-data" é usado para referenciar o campo de data no JavaScript. -->
+                    <input
+                        type="date"
+                        id="tarefa-data"
+                        required
+                    >
+                </div>
+
+                <!-- O botão de cadastro chama a função cadastrarTarefa() ao ser clicado. -->
+                <button type="button" class="add-button" onclick="cadastrarTarefa()">
+                    Cadastrar Tarefa
+                </button>
+
+            </form>
+
+
+            <!-- LISTA DE TAREFAS -->
+
+            <!-- id="lista-tarefas" é usado para referenciar a lista de tarefas no JavaScript. -->
+            <div class="lista-tarefas" id="lista-tarefas">
+
+                <!-- class="tarefa-item" é usada para referenciar cada item da lista no JavaScript. -->
+                <article class="tarefa-item">
+
+                    <input
+                        type="checkbox"
+                        class="tarefa-checkbox"
+                        aria-label="Concluir tarefa"
+                    >
+
+                    <span class="tarefa-nome">
+                        Revisar conceitos de normalização
+                    </span>
+
+                    <span class="tarefa-disciplina-lista">
+                        Banco de Dados
+                    </span>
+
+                    <span class="tarefa-data-conclusao">
+                        18/11/2026
+                    </span>
+
+                    <button
+                        class="deletar-button"
+                        aria-label="Excluir tarefa"
+                    >
+                        🗑️
+                    </button>
+
+                </article>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
     <script src="js/script.js"></script>
 </body>
 </html>
