@@ -208,9 +208,12 @@ function criarIdentificadorMarco(titulo, indice) {
 
 // Solicita, valida e salva a nova data do marco acadêmico
 function editarDataMarco(cartao, elementoData, identificador) {
-    const dataAtual = cartao.dataset.date || "";
+    const dataAtual = cartao.dataset.date
+        ? converterDataParaBrasil(cartao.dataset.date)
+        : "";
+
     const novaData = prompt(
-        "Digite a nova data no formato AAAA-MM-DD:",
+        "Digite a nova data no formato DD/MM/AAAA:",
         dataAtual
     );
 
@@ -221,42 +224,64 @@ function editarDataMarco(cartao, elementoData, identificador) {
     const dataInformada = novaData.trim();
 
     if (!validarDataMarco(dataInformada)) {
-        alert("Data inválida. Use o formato AAAA-MM-DD.");
+        alert("Data inválida. Use o formato DD/MM/AAAA.");
         return;
     }
+
+    const dataParaArmazenamento = converterDataParaArmazenamento(
+        dataInformada
+    );
 
     const datasSalvas = JSON.parse(
         localStorage.getItem("marcosAcademicos")
     ) || {};
 
-    datasSalvas[identificador] = dataInformada;
+    datasSalvas[identificador] = dataParaArmazenamento;
 
     localStorage.setItem(
         "marcosAcademicos",
         JSON.stringify(datasSalvas)
     );
 
-    cartao.dataset.date = dataInformada;
-    elementoData.textContent = formatarDataMarco(dataInformada);
+    cartao.dataset.date = dataParaArmazenamento;
+    elementoData.textContent = formatarDataMarco(dataParaArmazenamento);
 }
 
-// Valida a data no formato AAAA-MM-DD
+// Valida a data no formato DD/MM/AAAA
 function validarDataMarco(data) {
-    const padraoData = /^\d{4}-\d{2}-\d{2}$/;
+    const padraoData = /^\d{2}\/\d{2}\/\d{4}$/;
 
     if (!padraoData.test(data)) {
         return false;
     }
 
-    const partes = data.split("-");
-    const ano = Number(partes[0]);
+    const partes = data.split("/");
+    const dia = Number(partes[0]);
     const mes = Number(partes[1]);
-    const dia = Number(partes[2]);
+    const ano = Number(partes[2]);
     const dataCriada = new Date(ano, mes - 1, dia);
 
     return dataCriada.getFullYear() === ano &&
         dataCriada.getMonth() === mes - 1 &&
         dataCriada.getDate() === dia;
+}
+
+// Converte DD/MM/AAAA para AAAA-MM-DD
+function converterDataParaArmazenamento(data) {
+    const partes = data.split("/");
+
+    return `${partes[2]}-${partes[1]}-${partes[0]}`;
+}
+
+// Converte AAAA-MM-DD para DD/MM/AAAA
+function converterDataParaBrasil(data) {
+    const partes = data.split("-");
+
+    if (partes.length !== 3) {
+        return data;
+    }
+
+    return `${partes[2]}/${partes[1]}/${partes[0]}`;
 }
 
 // Converte AAAA-MM-DD para DD/MM
@@ -269,7 +294,6 @@ function formatarDataMarco(data) {
 
     return `${partes[2]}/${partes[1]}`;
 }
-
 // Inicializa as tarefas e os marcos após carregar a página
 document.addEventListener("DOMContentLoaded", function () {
     exibirTarefas();
