@@ -43,3 +43,21 @@ A edição de tarefas foi aprovada. Os testes também confirmaram que as funcion
 ## Resultado geral
 
 As funcionalidades de cadastro, validação, listagem, edição, conclusão, exclusão e persistência no LocalStorage foram testadas e aprovadas no Microsoft Edge.
+
+## Terceira rodada de testes
+
+Esta rodada foi realizada após a implementação da edição e do armazenamento das datas dos marcos acadêmicos.
+
+| ID | Funcionalidade | Procedimento | Resultado esperado | Resultado obtido | Status |
+|---|---|---|---|---|---|
+| T12 | Edição de marco | Clicar no ícone de edição, informar uma data válida no formato DD/MM/AAAA e confirmar | O marco deve exibir a nova data no formato DD/MM | A data do marco foi atualizada corretamente | Aprovado |
+| T13 | Persistência do marco | Editar a data de um marco e atualizar a página com F5 | A data alterada deve permanecer após a atualização | A data permaneceu salva após a atualização | Aprovado |
+| T14 | Independência dos marcos | Alterar as datas de dois marcos diferentes | Cada marco deve manter sua própria data | As datas foram armazenadas separadamente | Aprovado |
+| T15 | Validação de data | Informar uma data inexistente, como 31/02/2026 | O sistema deve rejeitar a data e manter o valor anterior | A data inválida foi rejeitada | Aprovado |
+| T16 | Validação de formato | Informar uma data no formato AAAA-MM-DD | O sistema deve solicitar o formato DD/MM/AAAA | O formato incorreto foi rejeitado | Aprovado |
+| T17 | Cancelamento da edição | Abrir a edição de um marco e clicar em Cancelar | A data anterior deve permanecer inalterada | A data não foi modificada | Aprovado |
+| T18 | Regressão das tarefas | Cadastrar, editar, concluir e excluir uma tarefa após a implementação dos marcos | As funcionalidades anteriores devem continuar funcionando | Todas as funcionalidades de tarefas continuaram funcionando | Aprovado |
+
+### Resultado da terceira rodada
+
+A edição dos marcos acadêmicos foi aprovada. As datas foram validadas no padrão brasileiro, armazenadas separadamente no LocalStorage e mantidas após a atualização da página. As funcionalidades anteriores de tarefas continuaram funcionando normalmente.
