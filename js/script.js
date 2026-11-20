@@ -169,5 +169,109 @@ function escaparHTML(texto) {
     return elemento.innerHTML;
 }
 
-// Exibe as tarefas salvas quando a página é carregada
-document.addEventListener("DOMContentLoaded", exibirTarefas);
+// Inicializa a edição e o armazenamento dos marcos acadêmicos
+function inicializarMarcosAcademicos() {
+    const cartoes = document.querySelectorAll(".marcos-card");
+    const datasSalvas = JSON.parse(
+        localStorage.getItem("marcosAcademicos")
+    ) || {};
+
+    cartoes.forEach(function (cartao, indice) {
+        const titulo = cartao.querySelector(".marcos-title").textContent.trim();
+        const elementoData = cartao.querySelector(".marcos-data span");
+        const botaoEditar = cartao.querySelector(".edit-button");
+        const identificador = criarIdentificadorMarco(titulo, indice);
+
+        cartao.dataset.marcoId = identificador;
+
+        if (datasSalvas[identificador]) {
+            cartao.dataset.date = datasSalvas[identificador];
+            elementoData.textContent = formatarDataMarco(
+                datasSalvas[identificador]
+            );
+        }
+
+        botaoEditar.addEventListener("click", function () {
+            editarDataMarco(cartao, elementoData, identificador);
+        });
+    });
+}
+
+// Cria um identificador único para cada marco acadêmico
+function criarIdentificadorMarco(titulo, indice) {
+    return titulo
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .replace(/\s+/g, "-") + "-" + indice;
+}
+
+// Solicita, valida e salva a nova data do marco acadêmico
+function editarDataMarco(cartao, elementoData, identificador) {
+    const dataAtual = cartao.dataset.date || "";
+    const novaData = prompt(
+        "Digite a nova data no formato AAAA-MM-DD:",
+        dataAtual
+    );
+
+    if (novaData === null) {
+        return;
+    }
+
+    const dataInformada = novaData.trim();
+
+    if (!validarDataMarco(dataInformada)) {
+        alert("Data inválida. Use o formato AAAA-MM-DD.");
+        return;
+    }
+
+    const datasSalvas = JSON.parse(
+        localStorage.getItem("marcosAcademicos")
+    ) || {};
+
+    datasSalvas[identificador] = dataInformada;
+
+    localStorage.setItem(
+        "marcosAcademicos",
+        JSON.stringify(datasSalvas)
+    );
+
+    cartao.dataset.date = dataInformada;
+    elementoData.textContent = formatarDataMarco(dataInformada);
+}
+
+// Valida a data no formato AAAA-MM-DD
+function validarDataMarco(data) {
+    const padraoData = /^\d{4}-\d{2}-\d{2}$/;
+
+    if (!padraoData.test(data)) {
+        return false;
+    }
+
+    const partes = data.split("-");
+    const ano = Number(partes[0]);
+    const mes = Number(partes[1]);
+    const dia = Number(partes[2]);
+    const dataCriada = new Date(ano, mes - 1, dia);
+
+    return dataCriada.getFullYear() === ano &&
+        dataCriada.getMonth() === mes - 1 &&
+        dataCriada.getDate() === dia;
+}
+
+// Converte AAAA-MM-DD para DD/MM
+function formatarDataMarco(data) {
+    const partes = data.split("-");
+
+    if (partes.length !== 3) {
+        return data;
+    }
+
+    return `${partes[2]}/${partes[1]}`;
+}
+
+// Inicializa as tarefas e os marcos após carregar a página
+document.addEventListener("DOMContentLoaded", function () {
+    exibirTarefas();
+    inicializarMarcosAcademicos();
+});
