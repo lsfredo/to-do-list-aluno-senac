@@ -133,5 +133,3 @@ No total, foram documentados 18 casos de teste aprovados no Microsoft Edge.
 Em desenvolvimento.
 
 As funcionalidades principais de tarefas e marcos acadêmicos estão implementadas, publicadas e testadas. As próximas etapas incluem a implementação da pesquisa, a revisão visual e responsiva da interface e a preparação das evidências para a apresentação final.
-
-As funcionalidades principais de tarefas e marcos acadêmicos estão implementadas, publicadas e testadas. As próximas etapas incluem a implementação da pesquisa, a revisão visual e responsiva da interface e a preparação das evidências para a apresentação final.
