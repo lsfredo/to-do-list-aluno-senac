@@ -238,3 +238,9 @@ h2 {
     cursor: pointer;
     font-size: 18px;
 }
+
+/* Espaçamento entre a pesquisa e a lista de tarefas */
+.campo-pesquisa {
+    margin-top: 24px;
+    margin-bottom: 32px;
+}
