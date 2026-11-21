@@ -66,27 +66,36 @@ function exibirTarefas() {
         const dataFormatada = formatarData(tarefa.data);
 
         item.innerHTML = `
-            <input
-                type="checkbox"
-                ${tarefa.concluida ? "checked" : ""}
-                onchange="alternarConclusao(${tarefa.id})"
-            >
+            <label class="controle-conclusao">
+                <input
+                    type="checkbox"
+                    ${tarefa.concluida ? "checked" : ""}
+                    onchange="alternarConclusao(${tarefa.id})"
+                    aria-label="${tarefa.concluida
+                        ? "Marcar tarefa como pendente"
+                        : "Marcar tarefa como concluída"}"
+                >
+
+                <span class="status-tarefa">
+                    ${tarefa.concluida ? "Concluída" : "Pendente"}
+                </span>
+            </label>
 
             <div class="tarefa-conteudo">
                 <strong>${escaparHTML(tarefa.descricao)}</strong>
                 <span>${escaparHTML(tarefa.disciplina)}</span>
                 <span>Conclusão: ${dataFormatada}</span>
             </div>
-            
+
             <button
-               type="button"
-               class="botao-editar"
-               onclick="editarTarefa(${tarefa.id})"
-               aria-label="Editar tarefa"
+                type="button"
+                class="botao-editar"
+                onclick="editarTarefa(${tarefa.id})"
+                aria-label="Editar tarefa"
             >
                 Editar
             </button>
-            
+
             <button
                 type="button"
                 class="botao-excluir"
