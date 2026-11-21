@@ -244,3 +244,42 @@ h2 {
     margin-top: 24px;
     margin-bottom: 32px;
 }
+
+/* Controle e identificação do status da tarefa */
+.controle-conclusao {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.controle-conclusao input {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #6c757d;
+}
+
+.status-tarefa {
+    font-weight: 600;
+    color: #6c757d;
+}
+
+/* Aparência da tarefa concluída */
+.tarefa-item.concluida {
+    background-color: #e9ecef;
+    border-color: #adb5bd;
+}
+
+.tarefa-item.concluida .status-tarefa {
+    color: #495057;
+}
+
+.tarefa-item.concluida .tarefa-conteudo {
+    color: #6c757d;
+    opacity: 0.75;
+}
+
+.tarefa-item.concluida .tarefa-conteudo strong {
+    text-decoration: line-through;
+}
