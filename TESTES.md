@@ -61,3 +61,22 @@ Esta rodada foi realizada após a implementação da edição e do armazenamento
 ### Resultado da terceira rodada
 
 A edição dos marcos acadêmicos foi aprovada. As datas foram validadas no padrão brasileiro, armazenadas separadamente no LocalStorage e mantidas após a atualização da página. As funcionalidades anteriores de tarefas continuaram funcionando normalmente.
+
+## Quarta rodada de testes
+
+Esta rodada foi realizada após a melhoria da identificação e da apresentação visual do status das tarefas, além dos ajustes de layout e responsividade.
+
+| ID | Funcionalidade | Procedimento | Resultado esperado | Resultado obtido | Status |
+|---|---|---|---|---|---|
+| T19 | Exibição do status pendente | Cadastrar uma nova tarefa e verificar o status exibido abaixo dos dados | A tarefa deve apresentar o texto Pendente abaixo da descrição, disciplina e data | O status Pendente foi exibido corretamente abaixo dos dados | Aprovado |
+| T20 | Alteração para concluída | Marcar o checkbox de uma tarefa pendente | O status deve mudar de Pendente para Concluída | O status foi alterado para Concluída | Aprovado |
+| T21 | Identificação visual da conclusão | Marcar uma tarefa como concluída | O cartão deve ficar cinza e a descrição deve aparecer riscada | O cartão ficou cinza e a descrição foi riscada | Aprovado |
+| T22 | Persistência visual da conclusão | Marcar uma tarefa como concluída e atualizar a página com F5 | O status Concluída e a aparência cinza devem permanecer após a atualização | O status e a aparência permaneceram após a atualização | Aprovado |
+| T23 | Retorno para pendente | Desmarcar o checkbox de uma tarefa concluída | A tarefa deve voltar ao status Pendente e recuperar a aparência original | A tarefa voltou ao status Pendente e recuperou a aparência original | Aprovado |
+| T24 | Posicionamento do status | Verificar a posição do checkbox e do texto de status no cartão | O controle deve ficar abaixo da descrição, disciplina e data, sem sobreposição | O controle ficou corretamente posicionado, sem sobreposição | Aprovado |
+| T25 | Botões da tarefa | Utilizar os botões Editar e Excluir após a alteração do layout | Os dois botões devem continuar visíveis e funcionando | Os botões permaneceram alinhados e funcionais | Aprovado |
+| T26 | Responsividade | Abrir a aplicação em uma janela estreita e verificar formulário, marcos, tarefas e botões | Os elementos devem se reorganizar sem sobreposição ou rolagem horizontal indevida | A interface se adaptou corretamente à largura reduzida | Aprovado |
+
+### Resultado da quarta rodada
+
+A identificação visual do status das tarefas foi aprovada. As tarefas apresentam os estados Pendente e Concluída de forma clara, com alteração para fundo cinza e descrição riscada quando concluídas. O status permanece salvo após a atualização da página, pode retornar ao estado pendente e não se sobrepõe aos demais dados. Os botões e o layout responsivo continuaram funcionando corretamente.
