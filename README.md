@@ -1,10 +1,10 @@
 # To-do List do Aluno Senac EAD
 
-Aplicação desenvolvida como parte do Projeto Integrador para auxiliar estudantes na organização de tarefas, disciplinas, datas de conclusão e marcos acadêmicos.
+Aplicação web desenvolvida como parte do Projeto Integrador para auxiliar estudantes na organização de tarefas, disciplinas, datas de conclusão e marcos acadêmicos.
 
 ## Objetivo
 
-Desenvolver uma aplicação web simples e funcional que permita ao estudante cadastrar, consultar, editar, concluir e excluir tarefas acadêmicas, além de acompanhar e alterar as datas dos principais marcos do curso.
+Desenvolver uma aplicação simples, organizada e funcional que permita ao estudante cadastrar, consultar, editar, concluir e excluir tarefas acadêmicas, além de acompanhar e alterar as datas dos principais marcos do curso.
 
 ## Funcionalidades implementadas
 
@@ -15,6 +15,8 @@ Desenvolver uma aplicação web simples e funcional que permita ao estudante cad
 - Listagem das tarefas cadastradas
 - Edição da descrição, disciplina e data de conclusão
 - Marcação de tarefas como concluídas
+- Identificação visual dos estados Pendente e Concluída
+- Alteração visual das tarefas concluídas
 - Exclusão de tarefas
 - Exibição das datas no padrão brasileiro
 - Persistência dos dados após a atualização da página
@@ -28,21 +30,15 @@ A aplicação apresenta os seguintes marcos:
 - Projeto Integrador
 - Prova Presencial
 
-Funcionalidades implementadas para os marcos acadêmicos:
+As seguintes funcionalidades foram implementadas para os marcos acadêmicos:
 
 - Consulta das datas
-- Edição individual das datas
+- Edição individual das datas pelo ícone de lápis
 - Entrada de datas no formato DD/MM/AAAA
 - Validação de datas inexistentes ou em formato incorreto
 - Cancelamento da edição sem alterar a data anterior
 - Armazenamento individual das datas no LocalStorage
-- Permanência das alterações após a atualização da página
-
-## Funcionalidade planejada
-
-- Pesquisa de tarefas por descrição ou disciplina
-
-O campo de pesquisa já está presente na interface, mas a lógica de filtragem ainda será implementada.
+- Permanência das alterações após atualizar ou reabrir a página
 
 ## Tecnologias utilizadas
 
@@ -57,7 +53,7 @@ O campo de pesquisa já está presente na interface, mas a lógica de filtragem 
 ## Estrutura do projeto
 
 - `index.html`: estrutura principal da aplicação
-- `css/style.css`: estilos visuais da interface
+- `css/style.css`: estilos visuais e regras de responsividade
 - `js/script.js`: lógica das tarefas e dos marcos acadêmicos
 - `img/`: imagens utilizadas na aplicação
 - `README.md`: documentação geral do projeto
@@ -68,25 +64,27 @@ O campo de pesquisa já está presente na interface, mas a lógica de filtragem 
 A aplicação utiliza o LocalStorage do navegador para armazenar:
 
 - tarefas cadastradas;
-- estado de conclusão das tarefas;
-- alterações realizadas nas tarefas;
+- dados editados das tarefas;
+- estado Pendente ou Concluída;
 - datas editadas dos marcos acadêmicos.
 
 Os dados permanecem disponíveis após atualizar ou fechar a página, desde que o armazenamento do navegador não seja apagado.
 
+O LocalStorage dispensa o uso de banco de dados externo nesta versão da aplicação.
+
 ## Aplicação publicada
 
-A aplicação foi publicada por meio do GitHub Pages e pode ser utilizada diretamente pelo navegador.
+A aplicação está publicada no GitHub Pages e pode ser utilizada diretamente pelo navegador.
 
-**Endereço da aplicação:**  
+**Endereço da aplicação:**
 
-https://lsfredo.github.io/to-do-list-aluno-senac/
+[https://lsfredo.github.io/to-do-list-aluno-senac/](https://lsfredo.github.io/to-do-list-aluno-senac/)
 
 ## Testes realizados
 
 Os testes funcionais estão documentados no arquivo `TESTES.md`.
 
-Até o momento, foram realizadas três rodadas de testes, abrangendo:
+Foram realizadas quatro rodadas de testes, abrangendo:
 
 - cadastro e listagem de tarefas;
 - validação dos campos obrigatórios;
@@ -98,38 +96,70 @@ Até o momento, foram realizadas três rodadas de testes, abrangendo:
 - validação das datas no padrão DD/MM/AAAA;
 - cancelamento da edição;
 - independência das datas dos marcos;
+- identificação visual dos estados Pendente e Concluída;
+- persistência visual das tarefas concluídas;
+- retorno de uma tarefa concluída ao estado Pendente;
+- posicionamento do status sem sobreposição;
+- funcionamento dos botões após os ajustes de layout;
+- responsividade da interface;
 - testes de regressão das funcionalidades anteriores.
 
-No total, foram documentados 18 casos de teste aprovados no Microsoft Edge.
+No total, foram documentados 26 casos de teste aprovados no Microsoft Edge.
 
-## Como executar
+## Como utilizar
 
-### Pelo GitHub Pages
+### Acesso pelo GitHub Pages
 
-1. Acesse o endereço publicado no GitHub Pages.
-2. Preencha a descrição, a disciplina e a data da tarefa.
+1. Acesse o endereço da aplicação publicado no GitHub Pages.
+2. Preencha a descrição, a disciplina e a data de conclusão.
 3. Clique em `Cadastrar Tarefa`.
-4. Utilize as opções disponíveis para editar, concluir ou excluir a tarefa.
-5. Para alterar a data de um marco acadêmico, clique no ícone de lápis.
-6. Informe a nova data no formato `DD/MM/AAAA`.
+4. Utilize o botão `Editar` para alterar os dados de uma tarefa.
+5. Marque o checkbox para alterar o status de `Pendente` para `Concluída`.
+6. Utilize o botão `Excluir` para remover uma tarefa.
+7. Para alterar a data de um marco acadêmico, clique no ícone de lápis.
+8. Informe a nova data no formato `DD/MM/AAAA`.
 
-### Localmente
+### Execução local
 
 1. Baixe ou clone este repositório.
 2. Abra a pasta do projeto.
 3. Abra o arquivo `index.html` em um navegador.
-4. Não é necessário instalar bibliotecas nem configurar um banco de dados.
+4. Não é necessário instalar bibliotecas nem configurar banco de dados.
+
+## Boas práticas aplicadas
+
+- Separação entre HTML, CSS e JavaScript
+- Organização dos arquivos em pastas
+- Uso de nomes descritivos para funções, variáveis, classes e identificadores
+- Validação dos campos obrigatórios
+- Validação de datas reais e do formato informado
+- Proteção dos textos inseridos contra interpretação como HTML
+- Persistência local dos dados
+- Uso de comentários para identificar seções relevantes
+- Interface responsiva para computadores, tablets e celulares
+- Registro das alterações por commits no GitHub
+- Documentação dos testes funcionais
 
 ## Limitações atuais
 
 - Os dados ficam armazenados somente no navegador utilizado.
-- A limpeza do LocalStorage remove os dados cadastrados.
-- As informações não são sincronizadas entre dispositivos.
-- O campo de pesquisa ainda não possui lógica de filtragem.
-- A aplicação não utiliza banco de dados externo nem sistema de autenticação.
+- A limpeza do LocalStorage remove as tarefas e as datas armazenadas.
+- As informações não são sincronizadas entre navegadores ou dispositivos.
+- A aplicação não utiliza banco de dados externo.
+- A aplicação não possui autenticação ou contas individuais.
+- Os dados não são enviados para um servidor.
 
 ## Status do projeto
 
-Em desenvolvimento.
+Em fase de finalização.
 
-As funcionalidades principais de tarefas e marcos acadêmicos estão implementadas, publicadas e testadas. As próximas etapas incluem a implementação da pesquisa, a revisão visual e responsiva da interface e a preparação das evidências para a apresentação final.
+As funcionalidades principais de tarefas e marcos acadêmicos estão implementadas, publicadas e testadas.
+
+As próximas etapas incluem:
+
+- revisão final da interface;
+- captura das evidências de funcionamento;
+- preparação da apresentação;
+- exportação da apresentação para PDF;
+- revisão final dos arquivos antes da entrega.
+- revisão visual e responsiva da interface e a preparação das evidências para a apresentação final.
